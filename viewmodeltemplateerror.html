@@ -1,0 +1,36 @@
+<head>
+  <title>viewmodeltemplateerror</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h4 data-bind="text: greeting"></h4>
+    </div>
+    <div class="row">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            {{> textInput id='body.firstName' label='First Name'}} {{> textInput id='body.lastName' label='Last Name'}} {{> textInput
+            id='body.comment' label='Comment' text='I love this' error='You have to say something' }}
+            <div class="input-field col-md-12">
+              <input type="text" data-bind="value: age">
+              <label>Age (Non Template)</label>
+            </div>
+          </div>
+        </div>
+        <input type="button" data-bind="click: formReset" class="btn btn-default" value="reset">
+      </form>
+      <h4>Form JSON</h4>
+      <div data-bind="text: formJS"></div>
+    </div>
+  </div>
+</body>
+
+<template name="textInput">
+  <div class="input-field col-md-12">
+    <input id="textInput" type="text" data-bind="value: text, class: { invalid: error }">
+    <label for="textInput" data-bind="text: label"></label>
+    <div class="red-text text-darken-1 small-font" role="alert" data-bind="if: error, text: error"></div>
+  </div>
+</template>
